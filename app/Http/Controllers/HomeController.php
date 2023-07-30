@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Book;
+use App\Models\Order;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -37,6 +39,11 @@ class HomeController extends Controller
         $categories=Category::where('status',1)->get();
         return view('frontend.category',compact('categories'));
     }
+    public function categoryBook($id){
+        $category=Category::find($id);
+        $books=Book::where('category_id',$id)->get();
+        return view('frontend.category_book',compact('books','category'));
+    }
 
     public function book(){
         $books=Book::all();
@@ -48,7 +55,15 @@ class HomeController extends Controller
         return view('frontend.bookDetails',compact('book'));
     }
     public function readMore($id){
-        // $book=Book::find($id);
-        return view('frontend.checkout');
+        $book=Book::find($id);
+        return view('frontend.checkout',compact('book'));
     }
+    public function purchasebook(){
+        $purchaseBooks=Order::where('user_id',Auth::id())->get();
+        // dd($purchaseBooks);
+
+        return view('frontend.purchase_book',compact('purchaseBooks'));
+    }
+
+    
 }

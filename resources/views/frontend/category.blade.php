@@ -12,7 +12,9 @@
     @foreach ($categories as $category)
         
     <div class="col-md-3 mt-5">
-        <img src="{{ $category->hasMedia('category_image')? $category->getMedia('category_image')[0]->getFullUrl():'' }}" alt="" width="250" height="250">
+        <a href="{{ route('frontend.category-book',$category->id)}}">
+         <img src="{{ $category->hasMedia('category_image')? $category->getMedia('category_image')[0]->getFullUrl():'' }}" alt="" width="250" height="250">
+        </a>
         <h5>{{$category->name}}</h5>
         <p>{{$category->description}}</p>
     </div>

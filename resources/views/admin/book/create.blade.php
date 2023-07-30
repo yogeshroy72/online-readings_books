@@ -31,13 +31,20 @@
 
                     </div>
                     <div class="mb-3 form-group">
-                        <label for="image">PDF</label>
+                        <label for="image">Thumbnail of PDF</label>
                         <input type="file" name="image" class="form-control">
                         @error('image') <small class="text-danger">{{ $message }}</small>@enderror
 
                     </div>
+                    <div class="mb-3 form-group">
+                        <label for="image"> PDF</label>
+                        <input type="file" name="pdf" class="form-control">
+                        @error('pdf') <small class="text-danger">{{ $message }}</small>@enderror
+
+                    </div>
                     <div class="col-md-6 mb-3 form-control">
-                        <select name="category_id" class="col-md-6 " >
+                        <label for="">Select Category</label>
+                        <select name="category_id" class="col-md-6 form-control " >
                             @foreach ($category as $categoryItem )
                             <option value="{{ $categoryItem->id }}">{{ $categoryItem->name }}</option>
                                 
@@ -45,7 +52,8 @@
                         </select>
                     </div>
                     <div class="mb-3 col-md-6 form-control">
-                            <select name="author_id" class="col-md-6">
+                        <label for="">Author:</label>
+                            <select name="author_id" class="col-md-6 form-control">
                                 @foreach ($author as $authorItem )
                                 <option value="{{ $authorItem->id }}">{{ $authorItem->name }}</option>
                                     

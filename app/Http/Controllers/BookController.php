@@ -27,6 +27,7 @@ class BookController extends Controller
             'name'=>'required|string',
             'description'=>'required',
             'image'=>'required|mimes:png,jpg',
+            'pdf'=>'required|mimes:pdf',
             'category_id'=>'required',
             'author_id'=>'required',
             'quantity'=>'integer|required',
@@ -54,6 +55,9 @@ class BookController extends Controller
         if($file=$data['image']){
             $book->addMedia($file)->toMediaCollection('book_image');
         }
+        if($file=$data['pdf']){
+            $book->addMedia($file)->toMediaCollection('book_pdf');
+        }
         return redirect()->route('book')->with('message','Book Added Successfully');
     }
     public function edit($id){
@@ -69,6 +73,7 @@ class BookController extends Controller
             'name'=>'required|string',
             'description'=>'required',
             'image'=>'nullable|mimes:png,jpg',
+            'pdf'=>'nullable|mimes:pdf',
             'category_id'=>'required',
             'author_id'=>'required',
             'quantity'=>'integer|required',
@@ -93,6 +98,15 @@ class BookController extends Controller
             $file=$data['image'];
             $book->clearMediaCollection('book_image');
             $book->addMedia($file)->toMediaCollection('book_image');
+       
+        }
+        if(array_key_exists('pdf',$data)){
+            $file=$data['pdf'];
+            if($book->hasMedia('book_pdf')){
+
+                $book->clearMediaCollection('book_pdf');
+            }
+            $book->addMedia($file)->toMediaCollection('book_pdf');
        
         }
         return redirect()->route('book')->with('message','Book updated Successfully');

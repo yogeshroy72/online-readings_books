@@ -16,6 +16,11 @@
         <li class="nav-item mr-5 pl-5">
           <a class="nav-link" href="#">Special book</a>
         </li>
+        @if(count(App\Models\Order::where('user_id',Auth::id())->get())>0 )
+        <li class="nav-item mr-5 pl-5">
+          <a class="nav-link" href="{{route('purchase.book')}}">Purchased book</a>
+        </li>
+        @endif
         @if (Route::has('login'))
         @auth
                        

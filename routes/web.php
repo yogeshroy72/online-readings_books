@@ -21,11 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// purchase book
+Route::get('/frontend-purchase-book', [App\Http\Controllers\HomeController::class, 'purchasebook'])->middleware(['auth'])->name('purchase.book');
 Route::get('/frontend-category', [App\Http\Controllers\HomeController::class, 'category'])->name('frontend.category');
+Route::get('/frontend-category-book/{id}', [App\Http\Controllers\HomeController::class, 'categoryBook'])->name('frontend.category-book');
 Route::get('/frontend-book', [App\Http\Controllers\HomeController::class, 'book'])->name('frontend.book');
 Route::get('/frontend-bookDetails/{id}', [App\Http\Controllers\HomeController::class, 'bookDetails'])->name('frontend.bookDetails');
 Route::get('/frontend-readMore/{id}', [App\Http\Controllers\HomeController::class, 'readMore'])->middleware(['auth'])->name('frontend.readMore');
+Route::post('/checkout/{id}', [App\Http\Controllers\OrderController::class, 'checkout'])->middleware(['auth'])->name('checkout.store');
+Route::get('/thank-you', [App\Http\Controllers\OrderController::class, 'thankyou'])->middleware(['auth'])->name('thankyou');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

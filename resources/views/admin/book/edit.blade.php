@@ -25,10 +25,17 @@
 
                 </div>
                 <div class="mb-3 form-group">
-                    <label for="image">Image</label>
+                    <label for="image">Thumbnail of PDF</label>
                     <input type="file" name="image" class="form-control">
                     @if($book->hasMedia('book_image'))
                     <img src="{{$book->getMedia('book_image')[0]->getFullUrl()}}" style="width:80px;height:50px">
+                    @endif
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="image">Pdf</label>
+                    <input type="file" name="pdf" class="form-control">
+                    @if($book->hasMedia('book_pdf'))
+                    <img src="{{$book->getMedia('book_pdf')[0]->getFullUrl()}}" style="width:80px;height:50px">
                     @endif
                 </div>
                 <div class="mb-3 form-group">
