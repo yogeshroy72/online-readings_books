@@ -20,6 +20,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
+// seach book
+Route::post('/frontend-search-book', [App\Http\Controllers\HomeController::class, 'searchbook'])->name('search.book');
 
 // purchase book
 Route::get('/frontend-purchase-book', [App\Http\Controllers\HomeController::class, 'purchasebook'])->middleware(['auth'])->name('purchase.book');

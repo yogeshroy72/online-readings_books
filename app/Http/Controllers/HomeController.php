@@ -64,6 +64,10 @@ class HomeController extends Controller
 
         return view('frontend.purchase_book',compact('purchaseBooks'));
     }
+    public function searchbook(Request $request){
+        $books=Book::where('name' ,'like','%'.$request->search.'%')->get();
+        return view('frontend.search_book',compact('books'));
+    }
 
     
 }

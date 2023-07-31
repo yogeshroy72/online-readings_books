@@ -16,11 +16,10 @@
         <li class="nav-item mr-5 pl-5">
           <a class="nav-link" href="#">Special book</a>
         </li>
-        @if(count(App\Models\Order::where('user_id',Auth::id())->get())>0 )
+       
         <li class="nav-item mr-5 pl-5">
           <a class="nav-link" href="{{route('purchase.book')}}">Purchased book</a>
         </li>
-        @endif
         @if (Route::has('login'))
         @auth
                        
@@ -39,9 +38,10 @@
         @endauth
         @endif
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" method="POST" action="{{route('search.book')}}">
+        @csrf
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-success" type="submit">Search</button>
       </form>
       <ul>
       

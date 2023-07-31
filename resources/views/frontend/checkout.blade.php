@@ -2,6 +2,9 @@
 @section('content')
 <div class="container-fluid mt-3">
     <div class="row justify-content-evenly mt-4">
+        @if(session('message'))
+        <h5 class="alert alert-success">{{session('message')}}</h5>
+        @endif
         <div class="col-md-8 bg-dark text-white text-center">
              Checkout
         </div>

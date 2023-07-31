@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     public function checkout(Request $request,$id){
+        $purchaseBook=Order::where('user_id',Auth::id())->where('book_id',$id)->first();
+        if($purchaseBook){
+            return back()->with('message','Your Already purchase this Book');
+
+        }
+
+
+
         $data=$request->validate([
             'phone'=>'required|numeric',
             'address'=>'required|string',
