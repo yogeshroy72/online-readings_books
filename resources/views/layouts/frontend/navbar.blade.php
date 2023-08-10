@@ -16,10 +16,16 @@
         <li class="nav-item mr-5 pl-5">
           <a class="nav-link" href="#">Special book</a>
         </li>
-       
-        <li class="nav-item mr-5 pl-5">
-          <a class="nav-link" href="{{route('purchase.book')}}">Purchased book</a>
-        </li>
+        @php
+    $pur = App\Models\Order::where('user_id', Auth::id())->get();
+@endphp
+
+@if (count($pur) > 0)
+    <li class="nav-item mr-5 pl-5">
+        <a class="nav-link" href="{{ route('purchase.book') }}">Purchased book</a>
+    </li>
+@endif
+
         @if (Route::has('login'))
         @auth
                        

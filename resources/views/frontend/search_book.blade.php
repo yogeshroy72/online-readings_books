@@ -13,7 +13,7 @@
                     <div class="card col-md-3 mx-2 my-4">
                         <a href="{{ route('frontend.bookDetails', $book->id) }}">
                             <img src="{{ $book->hasMedia('book_image') ? $book->getMedia('book_image')[0]->getFullUrl() : '' }}"
-                                class="img-fluid" alt="...">
+                                class="" alt="..." height="450px">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->name }}</h5>

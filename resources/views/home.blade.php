@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 <div>
-    Welcome User
+    Welcome {{Auth::user()->name}}
 
 </div>
                 <div class="card-body">

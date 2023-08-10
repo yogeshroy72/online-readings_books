@@ -72,11 +72,18 @@ class CategoryController extends Controller
     public function destroy($id){
         $category=Category::find($id);
         if($category){
-            $category->clearMediaCollection('category_image');
-            $category->delete();
+            $catBook=Book::where('category_id',$id)->get();
+            if($catBook){
+                return redirect()->route('category')->with('message','Category used on books so cannot deleted!');
+
+            }else{
+                $category->clearMediaCollection('category_image');
+                $category->delete();
+
+                return redirect()->route('category')->with('message','Category Deleted Successfully');
+            }
 
         }
-        return redirect()->route('category')->with('message','Category Deleted Successfully');
 
     }
 }
