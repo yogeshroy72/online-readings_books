@@ -11,10 +11,12 @@
                 @foreach ($books as $book)
             
                     <div class="card col-md-3 mx-2 my-4">
-                        <a href="{{ route('frontend.bookDetails', $book->id) }}">
-                            <img src="{{ $book->hasMedia('book_image') ? $book->getMedia('book_image')[0]->getFullUrl() : '' }}"
-                                class="" alt="..." height="450px">
+                        <div class="" style="height:80%;width:100%;overflow:hidden;">
+                            <a href="{{ route('frontend.bookDetails', $book->id) }}">
+                            <img style="object-fit: contain;height:100%;width:100%;" src="{{ $book->hasMedia('book_image') ? $book->getMedia('book_image')[0]->getFullUrl() : '' }}"
+                                class="img-fluid" alt="...">
                         </a>
+                    </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->name }}</h5>
                             <p class="card-text">Category : <strong>{{ $book->category->name }}</strong></p>
