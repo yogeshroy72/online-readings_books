@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $category=Category::find($id);
         if($category){
             $catBook=Book::where('category_id',$id)->get();
-            if($catBook){
+            if(count($catBook)>0){
                 return redirect()->route('category')->with('message','Category used on books so cannot deleted!');
 
             }else{
