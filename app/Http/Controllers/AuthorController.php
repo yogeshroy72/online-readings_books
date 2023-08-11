@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController;
 use Doctrine\Inflector\Rules\Spanish\Rules;
@@ -54,7 +55,15 @@ class AuthorController extends Controller
     public function destroy($id){
         $author=Author::find($id);
         if($author){
-            $author->delete();
+            $or_book= Book::where('author_id',$id)->get();
+            if(count($or_book)>0){
+                return redirect()->route('author')->with('message','Author used on books so cannot deleted!');
+
+            }
+            else{
+                $author->delete();
+            }
+                
         }
         return redirect()->route('author')->with('message','Author Deleted Successfully');
 

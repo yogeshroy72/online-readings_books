@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Oder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController;
 use App\Repositories\BookRepositoryInterface;
@@ -115,6 +116,12 @@ class BookController extends Controller
     public function destroy($id){
         $book=Book::find($id);
         if($book){
+           $or_book= Order::where('book_id',$id)->get();
+           if(count($or_book)>0){
+            foreach ($or_book as $key => $value) {
+                $value->delete();
+            }
+           }
             $book->clearMediaCollection('book_image');
             $book->delete();
 
