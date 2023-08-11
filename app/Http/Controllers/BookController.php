@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Category;
-use App\Models\Oder;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CommonController;
 use App\Repositories\BookRepositoryInterface;

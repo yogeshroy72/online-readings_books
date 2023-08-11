@@ -14,7 +14,7 @@
                         <div class="" style="height:80%;width:100%;overflow:hidden;">
                             <a href="{{ route('frontend.bookDetails', $book->id) }}">
                             <img style="object-fit: contain;height:100%;width:100%;" src="{{ $book->hasMedia('book_image') ? $book->getMedia('book_image')[0]->getFullUrl() : '' }}"
-                                class="img-fluid" alt="...">
+                                class="" alt="...">
                         </a>
                     </div>
                         <div class="card-body">

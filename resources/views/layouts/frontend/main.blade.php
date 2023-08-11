@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+
+body{
+    background-image: url('image/blob.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -59,10 +68,11 @@
 <body>
     @include('layouts.frontend.navbar')
     @yield('content')
-    <div class="whatsapp float-end">
+    <div class="whatsapp" >
         <!-- <a href=" https://wa.me/+977986858585?text=I'm%20interested%20to%20chat%20with%20you!" target="_blank">
         <img src="{{ asset('admin/images/whatsapp_icon.png') }}" alt="" srcset="" style="height:50px;width:50px">
         </a> -->
+        <img src="{{ asset('image/blob.jpg')}}" alt="" srcset="" width="100%" height="95vh">
         
 
     </div>
