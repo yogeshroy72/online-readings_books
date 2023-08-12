@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
-        <li class="nav-item mx-4">
+        <li class="nav-item mx-5">
           <a class="nav-link" href="{{route('frontend.category')}}">Category</a>
         </li>
-        <li class="nav-item mx-4">
+        <li class="nav-item mx-5">
           <a class="nav-link" href="{{route('frontend.book')}}">Book</a>
         </li>
-        <li class="nav-item mr-5 pl-5">
+        <li class="nav-item mr-5 px-5">
           <a class="nav-link" href="#">Special book</a>
         </li>
         @php
@@ -29,7 +29,23 @@
         @if (Route::has('login'))
         @auth
                        
-          <a class="nav-link" href="{{ url('/home') }}">home</a>
+          {{-- <a class="nav-link" href="{{ url('/home') }}">home</a> --}}
+          <li class="nav-item dropdown mx-5">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->name }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
         </li>
         @else
         <li class="nav-item mx-5 pl-5 float-end">
