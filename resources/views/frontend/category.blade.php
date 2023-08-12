@@ -22,7 +22,7 @@
          <img src="{{ $category->hasMedia('category_image')? $category->getMedia('category_image')[0]->getFullUrl():'' }}" alt="" width="100%" height="75%">
         </a>
         <h5 class="text-white">{{$category->name}}</h5>
-        <p style="color:gray;">{{$category->description}}</p>
+        <p style="color:white;">{{$category->description}}</p>
     </div>
     @endforeach
 </div>

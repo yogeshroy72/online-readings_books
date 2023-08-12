@@ -26,8 +26,7 @@
     </li>
 @endif
 
-        @if (Route::has('login'))
-        @auth
+        @if (Auth::user())
                        
           {{-- <a class="nav-link" href="{{ url('/home') }}">home</a> --}}
           <li class="nav-item dropdown mx-5">
@@ -51,13 +50,13 @@
         <li class="nav-item mx-5 pl-5 float-end">
           <a class="nav-link" href="{{ route('login') }}">Login</a>
         </li>
-        @if (Route::has('register'))
+        {{-- @if (Route::has('register')) --}}
 
       <li class="nav-item mx-3 float-right">
           <a class="nav-link" href="{{ route('register') }}">Register</a>
         </li>
-        @endif
-        @endauth
+        {{-- @endif --}}
+        {{-- @endauth --}}
         @endif
       </ul>
       <form class="d-flex" method="POST" action="{{route('search.book')}}">
