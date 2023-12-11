@@ -39,6 +39,7 @@
                             </div>
                         </div>
 
+
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
@@ -65,6 +66,11 @@
                             </div>
                         </div>
                     </form>
+                    <b>
+                        <br>
+                        <a href="{{ url('/login/facebook') }}">Login with Facebook</a>
+
+                    </b>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -16,6 +17,16 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/get-products', [BookController::class,'getProducts']);
+
+
+Route::get('/login/{provider}', [SocialAuthController::class, 'redirectToProvider']);
+Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback']);
+
+
+Route::get('/login/{provider}', [SocialAuthController::class, 'redirectToProvider']);
+Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handleProviderCallback']);
+
 
 Route::get('/', function () {
     

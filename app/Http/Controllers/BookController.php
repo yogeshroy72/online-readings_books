@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Book;
+use App\Models\Order;
 use App\Models\Author;
 use App\Models\Category;
-use App\Models\Order;
 use Illuminate\Http\Request;
+use Rolandstarke\Thumbnail\Thumbnail;
 use App\Http\Controllers\CommonController;
 use App\Repositories\BookRepositoryInterface;
+
 
 class BookController extends Controller
 {
@@ -54,8 +56,25 @@ class BookController extends Controller
        
         $book= Book::create($data);
         if($file=$data['image']){
-            $book->addMedia($file)->toMediaCollection('book_image');
-        }
+           $med= $book->addMedia($file)->toMediaCollection('book_image');
+           $mediaItem = $book->getFirstMedia('book_image');
+    
+    // Specify the dimensions for the thumbnail
+    $width = 100;
+    $height = 100;
+    
+    // Crop the image
+    $thumbnailConfig = [
+        'disk' => 'public', // Specify the disk where the thumbnails will be stored
+        'path' => 'thumbnails', // Specify the path within the disk to store thumbnails
+        'fit' => 'crop', // Specify the fit mode (crop, contain, etc.)
+    ];
+    
+    $thumbnail = new Thumbnail($thumbnailConfig);
+    
+    // Assuming $med is an instance of Spatie\MediaLibrary\MediaCollections\Models\Media
+    $thumbnailPath = $thumbnail->crop($med->getPath(), $width, $height);
+}
         if($file=$data['pdf']){
             $book->addMedia($file)->toMediaCollection('book_pdf');
         }
@@ -129,5 +148,21 @@ class BookController extends Controller
         return redirect()->route('book')->with('message','Book Deleted Successfully');
 
     }
+
+    public function getProducts(Request $request)
+{
+    $perPage = 6; // Number of items per page
+    // $data = [...]; // Your array of data
+
+    $paginator = new LengthAwarePaginator(
+        array_slice($data, ($request->input('page', 1) - 1) * $perPage, $perPage),
+        count($data),
+        $perPage,
+        Paginator::resolveCurrentPage(),
+        ['path' => Paginator::resolveCurrentPath()]
+    );
+
+    return response()->json($paginator);
+}
 
 }
