@@ -58,23 +58,7 @@ class BookController extends Controller
         if($file=$data['image']){
            $med= $book->addMedia($file)->toMediaCollection('book_image');
            $mediaItem = $book->getFirstMedia('book_image');
-    
-    // Specify the dimensions for the thumbnail
-    $width = 100;
-    $height = 100;
-    
-    // Crop the image
-    $thumbnailConfig = [
-        'disk' => 'public', // Specify the disk where the thumbnails will be stored
-        'path' => 'thumbnails', // Specify the path within the disk to store thumbnails
-        'fit' => 'crop', // Specify the fit mode (crop, contain, etc.)
-    ];
-    
-    $thumbnail = new Thumbnail($thumbnailConfig);
-    
-    // Assuming $med is an instance of Spatie\MediaLibrary\MediaCollections\Models\Media
-    $thumbnailPath = $thumbnail->crop($med->getPath(), $width, $height);
-}
+        }   
         if($file=$data['pdf']){
             $book->addMedia($file)->toMediaCollection('book_pdf');
         }
