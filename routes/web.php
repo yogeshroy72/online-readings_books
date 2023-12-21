@@ -44,6 +44,8 @@ Route::get('/frontend-bookDetails/{id}', [App\Http\Controllers\HomeController::c
 Route::get('/frontend-readMore/{id}', [App\Http\Controllers\HomeController::class, 'readMore'])->middleware(['auth'])->name('frontend.readMore');
 Route::post('/checkout/{id}', [App\Http\Controllers\OrderController::class, 'checkout'])->middleware(['auth'])->name('checkout.store');
 Route::get('/thank-you', [App\Http\Controllers\OrderController::class, 'thankyou'])->middleware(['auth'])->name('thankyou');
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -73,5 +75,6 @@ Route::controller(BookController::class)->middleware(['role:Admin'])->group(func
     Route::get('book/edit/{id}', 'edit')->name('book.edit');
     Route::put('book/update/{id}', 'update')->name('book.update');
     Route::get('book/destroy/{id}', 'destroy')->name('book.destroy');
+});
 });
 

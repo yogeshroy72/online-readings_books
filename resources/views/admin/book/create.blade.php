@@ -64,7 +64,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="quantity">Quantity</label>
                                 <input type="number" name="quantity" >
-                            
+                                @error('quantity') <small class="text-danger">{{ $message }}</small>@enderror
+
                         </div>
                     
                 
@@ -80,7 +81,8 @@
                             <div class="col-md-6 mb-3">
                                 <label for="price">Price</label>
                                     <input type="number" name="price" class="form-control" >
-                                
+                                    @error('price') <small class="text-danger">{{ $message }}</small>@enderror
+
                             </div>
 
                     <div class="col-md-6">

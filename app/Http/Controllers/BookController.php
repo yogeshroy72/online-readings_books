@@ -33,7 +33,7 @@ class BookController extends Controller
             'pdf'=>'required|mimes:pdf',
             'category_id'=>'required',
             'author_id'=>'required',
-            'quantity'=>'integer|required',
+            'quantity'=>'integer|required|numeric|min:1',
             'status'=>'nullable',
             'price'=>'required',
         ];
