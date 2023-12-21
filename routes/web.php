@@ -16,7 +16,8 @@ use App\Http\Controllers\HomeController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+*/Route::group(['middleware' => 'prevent-back-history'],function(){
+
 Route::get('/get-products', [BookController::class,'getProducts']);
 
 
@@ -35,7 +36,7 @@ Route::get('/', function () {
 // seach book
 Route::post('/frontend-search-book', [App\Http\Controllers\HomeController::class, 'searchbook'])->name('search.book');
 
-// purchase book
+    // purchase book
 Route::get('/frontend-purchase-book', [App\Http\Controllers\HomeController::class, 'purchasebook'])->middleware(['auth'])->name('purchase.book');
 Route::get('/frontend-category', [App\Http\Controllers\HomeController::class, 'category'])->name('frontend.category');
 Route::get('/frontend-category-book/{id}', [App\Http\Controllers\HomeController::class, 'categoryBook'])->name('frontend.category-book');
@@ -44,9 +45,8 @@ Route::get('/frontend-bookDetails/{id}', [App\Http\Controllers\HomeController::c
 Route::get('/frontend-readMore/{id}', [App\Http\Controllers\HomeController::class, 'readMore'])->middleware(['auth'])->name('frontend.readMore');
 Route::post('/checkout/{id}', [App\Http\Controllers\OrderController::class, 'checkout'])->middleware(['auth'])->name('checkout.store');
 Route::get('/thank-you', [App\Http\Controllers\OrderController::class, 'thankyou'])->middleware(['auth'])->name('thankyou');
-Route::group(['middleware' => 'prevent-back-history'],function(){
-
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'AdminIndex'])->middleware(['role:Admin'])->name('Admin.home');
