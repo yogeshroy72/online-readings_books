@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-md-6 mb-3 m-4 form-group">Payment Methods
                         <select class="form-control" name="select_mode" id="">
-                            <option value="COD">COD</option>
+                            {{-- <option value="COD">COD</option> --}}
                             <option value="ESEWA">ESEWA</option>
                         </select>
                             
