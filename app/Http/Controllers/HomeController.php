@@ -46,7 +46,7 @@ class HomeController extends Controller
     }
 
     public function book(){
-        $books=Book::all();
+        $books=Book::where('status',1)->get();
         return view('frontend.book',compact('books'));
     }
 

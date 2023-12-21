@@ -17,7 +17,7 @@ use App\Http\Controllers\Auth\SocialAuthController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/Route::group(['middleware' => 'prevent-back-history'],function(){
+*/
 
 Route::get('/get-products', [BookController::class,'getProducts']);
 
@@ -31,9 +31,7 @@ Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handlePr
 
 
 Route::get('/', function () {
-    if(Auth::id()){
-        Auth::logout();
-    }
+  
     return view('welcome');
 });
 // seach book
@@ -50,7 +48,7 @@ Route::post('/checkout/{id}', [App\Http\Controllers\OrderController::class, 'che
 Route::get('/thank-you', [App\Http\Controllers\OrderController::class, 'thankyou'])->middleware(['auth'])->name('thankyou');
 Auth::routes();
 
-
+Route::group(['middleware' => 'prevent-back-history'],function(){
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'AdminIndex'])->middleware(['role:Admin'])->name('Admin.home');
 
