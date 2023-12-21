@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\SocialAuthController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,9 @@ Route::get('/login/{provider}/callback', [SocialAuthController::class, 'handlePr
 
 
 Route::get('/', function () {
-    
+    if(Auth::id()){
+        Auth::logout();
+    }
     return view('welcome');
 });
 // seach book
